@@ -1,20 +1,18 @@
 # Prueba Técnica GFT
 Prueba técnica para vacante como tl
 
----
-
 ## **Instrucciones**
 
 ### **Ejecutar en Docker**
 
 Los siguientes comandos se deben ejecutar desde la ruta root del repositorio.
 
-1- Construir la imagen:
+1. Construir la imagen:
 ```bash
 docker build -t pruebatec-app .
 ```
 
-2- Ejecutar el contenedor:
+2. Ejecutar el contenedor:
 ```bash
 docker run -p 8080:8080 pruebatec-app
 ```
@@ -32,6 +30,8 @@ docker run -p 8080:8080 pruebatec-app
 ```bash
 docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test
 ```
+
+---
 
 ## Más detalles
 
@@ -67,11 +67,11 @@ Y el esquema de la tabla en `src/main/resources/schema.sql`
 
 ### Pruebas
 
-El proyecto incluye pruebas para validar los casos de uso principales y la funcionalidad de los endpoints REST.
+El proyecto incluye pruebas unitarias para validar los casos de uso principales y la funcionalidad de los endpoints REST.
 
 ### Decisiones Técnicas
 
-1. **Spring Boot**: Se pedía en la tarea.
+1. **Spring Boot**: Se pedía como requisito.
 2. **Lombok**: Reduce el código repetitivo (getters, setters, etc.), mejorando la legibilidad.
-3. **Docker**: Se incluyó un Dockerfile para garantizar la portabilidad y facilitar el despliegue en cualquier entorno.
+3. **Docker**: Se incluyó un Dockerfile para garantizar la portabilidad y facilitar el despliegue en cualquier entorno. (También la ejecución de los tests en un contenedor si se desea).
 4. **H2 Database**: Simplifica las pruebas al eliminar la necesidad de configurar una base de datos externa. (Sugerido en la tarea).
