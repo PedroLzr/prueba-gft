@@ -22,7 +22,9 @@ docker run -p 8080:8080 pruebatec-app
 ### URLs de interés:
 
 **Swagger UI:** http://localhost:8080/swagger-ui/index.html
+
 **ApiDocs:** http://localhost:8080/v3/api-docs
+
 **Consola H2:** http://localhost:8080/h2-console
 
 ### Ejecutar únicamente los tests desde un contenedor Docker:
