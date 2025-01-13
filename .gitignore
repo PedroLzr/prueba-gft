@@ -24,8 +24,10 @@ hs_err_pid*
 replay_pid*
 
 # Ignore build directories
+**/target/**
 /target/
 /build/
+**/build/**
 
 # Ignore Maven specific files
 .mvn/
