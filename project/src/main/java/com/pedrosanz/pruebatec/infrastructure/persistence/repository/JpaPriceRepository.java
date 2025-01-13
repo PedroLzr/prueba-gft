@@ -18,21 +18,6 @@ public class JpaPriceRepository implements PriceRepository {
     private EntityManager entityManager;
 
     @Override
-    public List<Price> findApplicablePrices(LocalDateTime applicationDate, Long productId, Long brandId) {
-        String jpql = "SELECT p FROM PriceEntity p " +
-                "WHERE p.productId = :productId " +
-                "AND p.brandId = :brandId " +
-                "AND :applicationDate BETWEEN p.startDate AND p.endDate";
-        TypedQuery<PriceEntity> query = entityManager.createQuery(jpql, PriceEntity.class);
-        query.setParameter("applicationDate", applicationDate);
-        query.setParameter("productId", productId);
-        query.setParameter("brandId", brandId);
-
-        List<PriceEntity> priceEntities = query.getResultList();
-        return priceEntities.stream().map(this::toDomainModel).toList();
-    }
-
-    @Override
     public Optional<Price> findHighestPriorityPrice(LocalDateTime applicationDate, Long productId, Long brandId) {
         String jpql = "SELECT p FROM PriceEntity p " +
                 "WHERE p.productId = :productId " +
