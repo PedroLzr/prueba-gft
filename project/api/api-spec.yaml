@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: E-commerce Pricing Service
+  version: 1.0.0
+  description: API para consultar precios de productos en un rango de fechas.
+
+paths:
+  /prices:
+    get:
+      summary: Obtener precio aplicable
+      description: Devuelve el precio aplicable para un producto, cadena y fecha dada.
+      parameters:
+        - name: applicationDate
+          in: query
+          required: true
+          description: Fecha de aplicación (formato ISO 8601)
+          schema:
+            type: string
+            format: date-time
+        - name: productId
+          in: query
+          required: true
+          description: Identificador del producto
+          schema:
+            type: integer
+        - name: brandId
+          in: query
+          required: true
+          description: Identificador de la cadena (marca)
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Precio encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  productId:
+                    type: integer
+                  brandId:
+                    type: integer
+                  priceList:
+                    type: integer
+                  startDate:
+                    type: string
+                    format: date-time
+                  endDate:
+                    type: string
+                    format: date-time
+                  price:
+                    type: number
+                    format: float
+                  currency:
+                    type: string
+        '404':
+          description: No se encontró un precio aplicable
+        '400':
+          description: Parámetros inválidos

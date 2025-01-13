@@ -1,0 +1,30 @@
+package com.pedrosanz.pruebatec.domain.repository;
+
+import com.pedrosanz.pruebatec.domain.model.Price;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+public interface PriceRepository {
+
+    /**
+     * Encuentra precios aplicables para un producto, marca y fecha específica.
+     *
+     * @param applicationDate Fecha de aplicación
+     * @param productId       Identificador del producto
+     * @param brandId         Identificador de la marca
+     * @return Lista de precios aplicables (pueden ser múltiples si hay solapamientos)
+     */
+    List<Price> findApplicablePrices(LocalDateTime applicationDate, Long productId, Long brandId);
+
+    /**
+     * Encuentra el precio final a aplicar con la mayor prioridad.
+     *
+     * @param applicationDate Fecha de aplicación
+     * @param productId       Identificador del producto
+     * @param brandId         Identificador de la marca
+     * @return Precio con mayor prioridad si existe
+     */
+    Optional<Price> findHighestPriorityPrice(LocalDateTime applicationDate, Long productId, Long brandId);
+}
