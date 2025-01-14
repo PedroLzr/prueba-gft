@@ -136,6 +136,26 @@
                 </plugins>
             </build>
         </profile>
+
+        <!-- Perfil para todos los tests -->
+        <profile>
+            <id>all-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>**/*ServiceTest.java</include>
+                                <include>**/*ControllerTest.java</include>
+                                <include>**/e2e/*.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
 </project>

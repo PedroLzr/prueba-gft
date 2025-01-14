@@ -4,6 +4,8 @@ Prueba técnica para vacante en GFT
 ## **Ejecutar en Docker**
 
 Los siguientes comandos se deben ejecutar desde la ruta root del repositorio.
+![root path](root_path.png "root path")
+
 
 1. Construir la imagen:
 ```bash
@@ -29,66 +31,38 @@ Consola H2: http://localhost:8080/h2-console
 
 Desde la ruta root del repositorio:
 
-**Ejecutar todos los tests:**
-
-1. Iniciar la aplicación (Necesario para tests e2e)
-```bash
-docker run -p 8080:8080 pruebatec-app
-```
-2. Ejecutar tests
-```bash
-docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test
-```
-
-**Ejecutar solo los tests unitarios:**
+**Ejecutar tests unitarios:**
 ```bash
 docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test -Punit-tests
 ```
 
-**Ejecutar solo los tests funcionales:**
+**Ejecutar tests funcionales:**
 ```bash
 docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test -Pfunctional-tests
 ```
 
-**Ejecutar solo los tests e2e:**
-1. Iniciar la aplicación
-```bash
-docker run -p 8080:8080 pruebatec-app
-```
-2. Ejecutar tests e2e
-```bash
-docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test -Pe2e-tests
-```
-
+*Para que los tests E2E desde un contenedor puedan comunicarse con la aplicación en otro, sería necesaria una red personalizada en Docker, ya que los contenedores no comparten localhost.
+Para evitar crear una red personalizada, a continuación se muestra como ejecutar todos los tests con mvn.
 
 ### Sin Docker:
 
 Ejecutar estos comandos desde la ruta del proyecto de maven (`project`)
+![project path](project_path.png "project path")
 
-**Ejecutar todos los tests:**
-
-1. Iniciar la aplicación (Necesario para tests e2e)
-```bash
-mvn spring-boot:run -DskipTests
-```
-2. Ejecutar tests
-```bash
-mvn test
-```
-
-**Ejecutar solo tests unitarios:**
+**Ejecutar tests unitarios:**
 
 ```bash
 mvn test -Punit-tests
 ```
 
-**Ejecutar solo tests funcionales:**
+**Ejecutar tests funcionales:**
 
 ```bash
 mvn test -Pfunctional-tests
 ```
 
-**Ejecutar solo tests e2e:**
+**Ejecutar tests e2e:**
+Para ejecutar los tests e2e es necesario que la aplicación esté en ejecución:
 
 1. Iniciar la aplicación
 ```bash
@@ -98,6 +72,12 @@ mvn spring-boot:run -DskipTests
 ```bash
 mvn test -Pe2e-tests
 ```
+
+**Ejecutar todos los tests a la vez:**
+```bash
+mvn test -Pall-tests
+```
+Este perfil requiere también que la aplicación esté en ejecución (ejecuta los tests e2e)
 
 ---
 
