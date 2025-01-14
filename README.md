@@ -31,7 +31,7 @@ Desde la ruta root del repositorio:
 
 **Ejecutar todos los tests:**
 
-1. Iniciar la aplicación
+1. Iniciar la aplicación (Necesario para tests e2e)
 ```bash
 docker run -p 8080:8080 pruebatec-app
 ```
@@ -60,31 +60,40 @@ docker run -p 8080:8080 pruebatec-app
 docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test -Pe2e-tests
 ```
 
-### Directamente con maven:
+### Sin Docker:
 
-#### Ejecutar tests unitarios:
+Ejecutar estos comandos desde la ruta del proyecto de maven (`project`)
 
-Ejecutar tests unitarios (desde ruta del proyecto maven `project`)
+**Ejecutar todos los tests:**
+
+1. Iniciar la aplicación (Necesario para tests e2e)
+```bash
+mvn spring-boot:run -DskipTests
+```
+2. Ejecutar tests
+```bash
+mvn test
+```
+
+**Ejecutar solo tests unitarios:**
 
 ```bash
 mvn test -Punit-tests
 ```
 
-#### Ejecutar tests funcionales:
-
-Ejecutar tests funcionales (desde ruta del proyecto maven `project`)
+**Ejecutar solo tests funcionales:**
 
 ```bash
 mvn test -Pfunctional-tests
 ```
 
-#### Ejecutar tests e2e:
+**Ejecutar solo tests e2e:**
 
-1. Iniciar la aplicación (desde ruta root del repositorio)
+1. Iniciar la aplicación
 ```bash
-docker run -p 8080:8080 pruebatec-app
+mvn spring-boot:run -DskipTests
 ```
-2. Ejecutar tests e2e (desde ruta del proyecto maven `project`)
+2. Ejecutar tests e2e
 ```bash
 mvn test -Pe2e-tests
 ```
