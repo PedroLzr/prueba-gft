@@ -64,7 +64,8 @@ mvn test -Pfunctional-tests
 ```
 
 **Ejecutar tests e2e:**
-Para ejecutar los tests e2e es necesario que la aplicación esté en ejecución:
+
+(Para ejecutar los tests e2e es necesario que la aplicación esté en ejecución)
 
 1. Iniciar la aplicación
 ```bash
