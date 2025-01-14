@@ -4,6 +4,7 @@ Prueba técnica para vacante en GFT
 ## **Ejecutar en Docker**
 
 Los siguientes comandos se deben ejecutar desde la ruta root del repositorio.
+
 ![root path](root_path.png "root path")
 
 
