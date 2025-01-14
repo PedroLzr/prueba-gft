@@ -47,6 +47,7 @@ Para evitar crear una red personalizada, a continuación se muestra como ejecuta
 ### Sin Docker:
 
 Ejecutar estos comandos desde la ruta del proyecto de maven (`project`)
+
 ![project path](project_path.png "project path")
 
 **Ejecutar tests unitarios:**
