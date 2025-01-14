@@ -99,7 +99,6 @@ mvn spring-boot:run -DskipTests
 mvn test -Pe2e-tests
 ```
 
-
 ---
 
 ## Más detalles
@@ -137,9 +136,9 @@ Y el esquema de la tabla en `src/main/resources/schema.sql`
 ### Pruebas
 
 ### **Tipos de Tests**
-1. **Tests Unitarios**: Validan la lógica de negocio de manera aislada.
-2. **Tests Funcionales**: Validan los endpoints REST simulando solicitudes HTTP.
-3. **Tests End-to-End (E2E)**: Verifican el flujo completo desde la API hasta la base de datos.
+1. **Tests Unitarios**: Validan la lógica de negocio de manera aislada (clase PriceService).
+2. **Tests Funcionales**: Validan los endpoints REST simulando solicitudes HTTP (clase PriceControllerTest).
+3. **Tests End-to-End (E2E)**: Verifican el flujo completo desde la API hasta la base de datos (clase PriceE2ETest).
 
 ### Decisiones Técnicas
 
