@@ -39,7 +39,7 @@ public class PriceEntity {
     @Column(name = "PRICE", nullable = false)
     private BigDecimal price;
 
-    @Column(name = "CURR", nullable = false)
+    @Column(name = "CURRENCY", nullable = false)
     private String currency;
 
 }

@@ -1,4 +1,4 @@
-package com.pedrosanz.pruebatec.infrastructure.rest.controllers;
+package com.pedrosanz.pruebatec.infrastructure.rest.controller;
 
 import com.pedrosanz.pruebatec.application.exception.InvalidInputException;
 import com.pedrosanz.pruebatec.application.exception.PriceNotFoundException;

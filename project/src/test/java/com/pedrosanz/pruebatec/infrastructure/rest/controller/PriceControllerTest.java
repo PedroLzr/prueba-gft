@@ -1,4 +1,4 @@
-package com.pedrosanz.pruebatec.infrastructure.rest.controllers;
+package com.pedrosanz.pruebatec.infrastructure.rest.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pedrosanz.pruebatec.application.service.PriceService;

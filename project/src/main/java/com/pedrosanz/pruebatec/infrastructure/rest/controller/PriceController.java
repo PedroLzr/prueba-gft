@@ -1,4 +1,4 @@
-package com.pedrosanz.pruebatec.infrastructure.rest.controllers;
+package com.pedrosanz.pruebatec.infrastructure.rest.controller;
 
 import com.pedrosanz.pruebatec.application.service.PriceService;
 import com.pedrosanz.pruebatec.domain.model.Price;

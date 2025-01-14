@@ -67,11 +67,22 @@ Y el esquema de la tabla en `src/main/resources/schema.sql`
 
 ### Pruebas
 
-El proyecto incluye pruebas unitarias para validar los casos de uso principales y la funcionalidad de los endpoints REST.
+### **Tipos de Tests**
+1. **Tests Unitarios**: Validan la lógica de negocio de manera aislada.
+2. **Tests Funcionales**: Validan los endpoints REST simulando solicitudes HTTP.
+3. **Tests End-to-End (E2E)**: Verifican el flujo completo desde la API hasta la base de datos.
+
+### **Cómo Ejecutar los Tests**
+Desde la carpeta `project`:
+
+- Ejecutar todos los tests:
+  ```bash
+  mvn test
 
 ### Decisiones Técnicas
 
 1. **Spring Boot**: Se pedía como requisito.
 2. **Lombok**: Reduce el código repetitivo (getters, setters, etc.), mejorando la legibilidad.
-3. **Docker**: Se incluyó un Dockerfile para garantizar la portabilidad y facilitar el despliegue en cualquier entorno. (También la ejecución de los tests en un contenedor si se desea).
-4. **H2 Database**: Simplifica las pruebas al eliminar la necesidad de configurar una base de datos externa. (Sugerido en la tarea).
+3. **H2 Database**: Simplifica las pruebas al eliminar la necesidad de configurar una base de datos externa. (Sugerido en la tarea).
+4. **RestAssured**: Para testing e2e. Permite pruebas e2e sencillas y efectivas para validar la integración y funcionalidad de APIs REST.
+5. **Docker**: Se incluyó un Dockerfile para garantizar la portabilidad y facilitar el despliegue en cualquier entorno.
