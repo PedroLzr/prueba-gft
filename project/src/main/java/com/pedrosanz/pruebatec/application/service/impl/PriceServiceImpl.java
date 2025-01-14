@@ -5,11 +5,13 @@ import com.pedrosanz.pruebatec.domain.model.Price;
 import com.pedrosanz.pruebatec.domain.repository.PriceRepository;
 import com.pedrosanz.pruebatec.application.exception.InvalidInputException;
 import com.pedrosanz.pruebatec.application.exception.PriceNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class PriceServiceImpl implements PriceService {
 
@@ -31,6 +33,8 @@ public class PriceServiceImpl implements PriceService {
      */
     @Override
     public Price getApplicablePrice(LocalDateTime applicationDate, Long productId, Long brandId) {
+        log.trace("Ejecutando getApplicablePrice");
+
         validateInputs(applicationDate, productId, brandId);
 
         Optional<Price> highestPriorityPrice = priceRepository.findHighestPriorityPrice(applicationDate, productId, brandId);

@@ -1,5 +1,5 @@
 # Prueba Técnica GFT
-Prueba técnica para vacante como tl
+Prueba técnica para vacante en GFT
 
 ## **Instrucciones**
 
@@ -25,10 +25,59 @@ docker run -p 8080:8080 pruebatec-app
 
 **Consola H2:** http://localhost:8080/h2-console
 
-### Ejecutar únicamente los tests desde un contenedor Docker:
+## Ejecutar tests
 
+### Desde Docker:
+
+Desde la ruta root del repositorio:
+
+Ejecutar todos los tests (necesario que la aplicación esté ejecutandose):
 ```bash
 docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test
+```
+
+Ejecutar solo los tests unitarios:
+```bash
+docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test -Punit-tests
+```
+
+Ejecutar solo los tests funcionales:
+```bash
+docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test -Pfunctional-tests
+```
+
+Ejecutar solo los tests e2e (necesario que la aplicación esté ejecutandose):
+```bash
+docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test -Pe2e-tests
+```
+
+### Directamente con maven:
+
+#### Ejecutar tests unitarios:
+
+Ejecutar tests unitarios (desde ruta del proyecto maven `project`)
+
+```bash
+mvn test -Punit-tests
+```
+
+#### Ejecutar tests funcionales:
+
+Ejecutar tests funcionales (desde ruta del proyecto maven `project`)
+
+```bash
+mvn test -Pfunctional-tests
+```
+
+#### Ejecutar tests e2e:
+
+1. Iniciar la aplicación (desde ruta root del repositorio)
+```bash
+docker run -p 8080:8080 pruebatec-app
+```
+2. Ejecutar tests e2e (desde ruta del proyecto maven `project`)
+```bash
+mvn test -Pe2e-tests
 ```
 
 ---
@@ -82,7 +131,7 @@ Desde la carpeta `project`:
 ### Decisiones Técnicas
 
 1. **Spring Boot**: Se pedía como requisito.
-2. **Lombok**: Reduce el código repetitivo (getters, setters, etc.), mejorando la legibilidad.
+2. **Lombok**: Reduce el código repetitivo (getters, setters, etc.), mejorando la legibilidad. También aporta un logger.
 3. **H2 Database**: Simplifica las pruebas al eliminar la necesidad de configurar una base de datos externa. (Sugerido en la tarea).
 4. **RestAssured**: Para testing e2e. Permite pruebas e2e sencillas y efectivas para validar la integración y funcionalidad de APIs REST.
 5. **Docker**: Se incluyó un Dockerfile para garantizar la portabilidad y facilitar el despliegue en cualquier entorno.
