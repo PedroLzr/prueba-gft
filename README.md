@@ -121,13 +121,6 @@ Y el esquema de la tabla en `src/main/resources/schema.sql`
 2. **Tests Funcionales**: Validan los endpoints REST simulando solicitudes HTTP.
 3. **Tests End-to-End (E2E)**: Verifican el flujo completo desde la API hasta la base de datos.
 
-### **Cómo Ejecutar los Tests**
-Desde la carpeta `project`:
-
-- Ejecutar todos los tests:
-  ```bash
-  mvn test
-
 ### Decisiones Técnicas
 
 1. **Spring Boot**: Se pedía como requisito.
