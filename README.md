@@ -1,9 +1,7 @@
 # Prueba Técnica GFT
 Prueba técnica para vacante en GFT
 
-## **Instrucciones**
-
-### **Ejecutar en Docker**
+## **Ejecutar en Docker**
 
 Los siguientes comandos se deben ejecutar desde la ruta root del repositorio.
 
@@ -19,34 +17,45 @@ docker run -p 8080:8080 pruebatec-app
 
 ### URLs de interés:
 
-**Swagger UI:** http://localhost:8080/swagger-ui/index.html
+Swagger UI: http://localhost:8080/swagger-ui/index.html
 
-**ApiDocs:** http://localhost:8080/v3/api-docs
+ApiDocs: http://localhost:8080/v3/api-docs
 
-**Consola H2:** http://localhost:8080/h2-console
+Consola H2: http://localhost:8080/h2-console
 
 ## Ejecutar tests
 
-### Desde Docker:
+### Con Docker:
 
 Desde la ruta root del repositorio:
 
-Ejecutar todos los tests (necesario que la aplicación esté ejecutandose):
+**Ejecutar todos los tests:**
+
+1. Iniciar la aplicación
+```bash
+docker run -p 8080:8080 pruebatec-app
+```
+2. Ejecutar tests
 ```bash
 docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test
 ```
 
-Ejecutar solo los tests unitarios:
+**Ejecutar solo los tests unitarios:**
 ```bash
 docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test -Punit-tests
 ```
 
-Ejecutar solo los tests funcionales:
+**Ejecutar solo los tests funcionales:**
 ```bash
 docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test -Pfunctional-tests
 ```
 
-Ejecutar solo los tests e2e (necesario que la aplicación esté ejecutandose):
+**Ejecutar solo los tests e2e:**
+1. Iniciar la aplicación
+```bash
+docker run -p 8080:8080 pruebatec-app
+```
+2. Ejecutar tests e2e
 ```bash
 docker run -it --rm -v $(pwd)/project:/app -w /app maven:3.9.5-eclipse-temurin-21 mvn test -Pe2e-tests
 ```
