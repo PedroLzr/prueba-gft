@@ -1,8 +1,9 @@
 package com.pedrosanz.pruebatec.application.service;
 
+import com.pedrosanz.pruebatec.application.port.in.PriceService;
 import com.pedrosanz.pruebatec.application.service.impl.PriceServiceImpl;
 import com.pedrosanz.pruebatec.domain.model.Price;
-import com.pedrosanz.pruebatec.domain.repository.PriceRepository;
+import com.pedrosanz.pruebatec.application.port.out.PriceRepository;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

@@ -1,9 +1,8 @@
 package com.pedrosanz.pruebatec.infrastructure.rest.controller;
 
-import com.pedrosanz.pruebatec.application.service.PriceService;
+import com.pedrosanz.pruebatec.application.port.in.PriceService;
 import com.pedrosanz.pruebatec.domain.model.Price;
 import com.pedrosanz.pruebatec.infrastructure.rest.dto.request.PriceRequestDTO;
-import com.pedrosanz.pruebatec.infrastructure.rest.dto.response.ErrorResponseDTO;
 import com.pedrosanz.pruebatec.infrastructure.rest.dto.response.PriceResponseDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

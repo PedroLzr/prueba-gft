@@ -1,7 +1,7 @@
 package com.pedrosanz.pruebatec.infrastructure.persistence.repository;
 
 import com.pedrosanz.pruebatec.domain.model.Price;
-import com.pedrosanz.pruebatec.domain.repository.PriceRepository;
+import com.pedrosanz.pruebatec.application.port.out.PriceRepository;
 import com.pedrosanz.pruebatec.infrastructure.persistence.entity.PriceEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
