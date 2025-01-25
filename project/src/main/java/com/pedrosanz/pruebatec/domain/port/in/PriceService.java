@@ -1,4 +1,4 @@
-package com.pedrosanz.pruebatec.application.port.in;
+package com.pedrosanz.pruebatec.domain.port.in;
 
 import com.pedrosanz.pruebatec.domain.model.Price;
 

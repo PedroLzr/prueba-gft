@@ -1,6 +1,6 @@
 package com.pedrosanz.pruebatec.infrastructure.rest.controller;
 
-import com.pedrosanz.pruebatec.application.port.in.PriceService;
+import com.pedrosanz.pruebatec.domain.port.in.PriceService;
 import com.pedrosanz.pruebatec.domain.model.Price;
 import com.pedrosanz.pruebatec.infrastructure.rest.dto.request.PriceRequestDTO;
 import com.pedrosanz.pruebatec.infrastructure.rest.dto.response.PriceResponseDTO;

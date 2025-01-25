@@ -1,8 +1,8 @@
 package com.pedrosanz.pruebatec.application.service.impl;
 
-import com.pedrosanz.pruebatec.application.port.in.PriceService;
+import com.pedrosanz.pruebatec.domain.port.in.PriceService;
 import com.pedrosanz.pruebatec.domain.model.Price;
-import com.pedrosanz.pruebatec.application.port.out.PriceRepository;
+import com.pedrosanz.pruebatec.domain.port.out.PriceRepository;
 import com.pedrosanz.pruebatec.application.exception.InvalidInputException;
 import com.pedrosanz.pruebatec.application.exception.PriceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
