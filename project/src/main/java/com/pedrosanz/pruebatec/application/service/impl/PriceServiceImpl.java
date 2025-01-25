@@ -35,23 +35,9 @@ public class PriceServiceImpl implements PriceService {
     public Price getApplicablePrice(LocalDateTime applicationDate, Long productId, Long brandId) {
         log.trace("Ejecutando getApplicablePrice");
 
-        validateInputs(applicationDate, productId, brandId);
-
         Optional<Price> highestPriorityPrice = priceRepository.findHighestPriorityPrice(applicationDate, productId, brandId);
 
         return highestPriorityPrice.orElseThrow(() ->
                 new PriceNotFoundException("No se encontró un precio aplicable para los parámetros proporcionados"));
-    }
-
-    private void validateInputs(LocalDateTime applicationDate, Long productId, Long brandId) {
-        if (applicationDate == null) {
-            throw new InvalidInputException("La fecha de aplicación no puede ser nula");
-        }
-        if (productId == null || productId <= 0) {
-            throw new InvalidInputException("El identificador del producto es incorrecto");
-        }
-        if (brandId == null || brandId <= 0) {
-            throw new InvalidInputException("El identificador de la marca es incorrecto");
-        }
     }
 }

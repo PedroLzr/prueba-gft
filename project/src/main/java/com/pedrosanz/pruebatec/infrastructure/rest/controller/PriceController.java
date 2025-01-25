@@ -4,6 +4,7 @@ import com.pedrosanz.pruebatec.domain.port.in.PriceService;
 import com.pedrosanz.pruebatec.domain.model.Price;
 import com.pedrosanz.pruebatec.infrastructure.rest.dto.request.PriceRequestDTO;
 import com.pedrosanz.pruebatec.infrastructure.rest.dto.response.PriceResponseDTO;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class PriceController {
      * @return DTO de respuesta con el precio encontrado
      */
     @GetMapping
-    public ResponseEntity<?> getPrice(@RequestBody PriceRequestDTO priceRequestDTO) {
+    public ResponseEntity<?> getPrice(@Valid @RequestBody PriceRequestDTO priceRequestDTO) {
         log.info("Llamada a getPrice (GET /api/v1/prices) con parámetros: {}", priceRequestDTO);
 
         Price price = priceService.getApplicablePrice(
