@@ -1,7 +1,7 @@
 package com.pedrosanz.pruebatec.infrastructure.rest.controller;
 
 import com.pedrosanz.pruebatec.application.exception.PriceNotFoundException;
-import com.pedrosanz.pruebatec.infrastructure.rest.dto.response.ErrorResponseDTO;
+import com.pedrosanz.pruebatec.infrastructure.rest.dto.ErrorResponseDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handlePriceNotFound(PriceNotFoundException ex) {
         log.error("PriceNotFound manejado: {} - Mensaje: {}", ex.getClass().getSimpleName(), ex.getMessage());
 
-        ErrorResponseDTO errorResponse = new ErrorResponseDTO(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        ErrorResponseDTO errorResponse = new ErrorResponseDTO();
+        errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        errorResponse.setMessage(ex.getMessage());
+
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
@@ -27,7 +30,10 @@ public class GlobalExceptionHandler {
         log.error("InvalidInput manejado: {} - Mensaje: {}", ex.getClass().getSimpleName(), ex.getMessage());
 
         String errorMessage = ex.getBindingResult().getAllErrors().getFirst().getDefaultMessage();
-        ErrorResponseDTO errorResponse = new ErrorResponseDTO(HttpStatus.BAD_REQUEST.value(), errorMessage);
+        ErrorResponseDTO errorResponse = new ErrorResponseDTO();
+        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        errorResponse.setMessage(errorMessage);
+
         return ResponseEntity.badRequest().body(errorResponse);
     }
 
@@ -35,7 +41,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
         log.error("Error de deserialización manejado: {}", ex.getMessage());
 
-        ErrorResponseDTO errorResponse = new ErrorResponseDTO(HttpStatus.BAD_REQUEST.value(), "Error en el formato del JSON de entrada.");
+        ErrorResponseDTO errorResponse = new ErrorResponseDTO();
+        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        errorResponse.setMessage("Error en el formato del JSON de entrada.");
+
         return ResponseEntity.badRequest().body(errorResponse);
     }
 }

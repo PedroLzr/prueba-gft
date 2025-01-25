@@ -3,7 +3,7 @@ package com.pedrosanz.pruebatec.infrastructure.rest.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pedrosanz.pruebatec.domain.port.in.PriceService;
 import com.pedrosanz.pruebatec.domain.model.Price;
-import com.pedrosanz.pruebatec.infrastructure.rest.dto.request.PriceRequestDTO;
+import com.pedrosanz.pruebatec.infrastructure.rest.dto.PriceRequestDTO;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;

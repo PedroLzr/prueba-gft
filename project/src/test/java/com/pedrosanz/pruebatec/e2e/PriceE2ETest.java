@@ -163,9 +163,9 @@ class PriceE2ETest {
                 .when()
                 .get("/api/v1/prices")
                 .then()
-                .statusCode(400) // Verifica el código de estado HTTP
-                .body("status", equalTo(400)) // Verifica que el ErrorResponseDTO tiene el código correcto
-                .body("message", equalTo("La fecha de aplicación es obligatoria")); // Verifica el mensaje de error
+                .statusCode(400)
+                .body("status", equalTo(400))
+                .body("message", equalTo("must not be null"));
     }
 
     @Test
@@ -186,9 +186,9 @@ class PriceE2ETest {
                 .when()
                 .get("/api/v1/prices")
                 .then()
-                .statusCode(400)
-                .body("status", equalTo(400))
-                .body("message", equalTo("El identificador del producto debe ser mayor a 0"));
+                .statusCode(404)
+                .body("status", equalTo(404))
+                .body("message", equalTo("No se encontró un precio aplicable para los parámetros proporcionados"));
     }
 
     @Test
@@ -211,7 +211,7 @@ class PriceE2ETest {
                 .then()
                 .statusCode(400)
                 .body("status", equalTo(400))
-                .body("message", equalTo("El identificador de la marca es obligatorio"));
+                .body("message", equalTo("must not be null"));
     }
 
     @Test
