@@ -2,6 +2,7 @@ package com.pedrosanz.pruebatec.infrastructure.rest.controller;
 
 import com.pedrosanz.pruebatec.domain.port.in.PriceService;
 import com.pedrosanz.pruebatec.domain.model.Price;
+import com.pedrosanz.pruebatec.infrastructure.mapper.PriceMapper;
 import com.pedrosanz.pruebatec.infrastructure.rest.api.PriceApi;
 import com.pedrosanz.pruebatec.infrastructure.rest.dto.PriceRequestDTO;
 import com.pedrosanz.pruebatec.infrastructure.rest.dto.PriceResponseDTO;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.*;
 public class PriceController implements PriceApi {
 
     private final PriceService priceService;
+    private final PriceMapper priceMapper;
 
-    public PriceController(PriceService priceService) {
+    public PriceController(PriceService priceService, PriceMapper priceMapper) {
         this.priceService = priceService;
+        this.priceMapper = priceMapper;
     }
 
     @Override
@@ -30,16 +33,9 @@ public class PriceController implements PriceApi {
                 priceRequestDTO.getBrandId()
         );
 
-        PriceResponseDTO responseDTO = new PriceResponseDTO();
-        responseDTO.setProductId(price.getProductId());
-        responseDTO.setBrandId(price.getBrandId());
-        responseDTO.setPriceList(price.getPriceList());
-        responseDTO.setStartDate(price.getStartDate());
-        responseDTO.setEndDate(price.getEndDate());
-        responseDTO.setPrice(price.getPrice());
-        responseDTO.setCurrency(price.getCurrency());
+        PriceResponseDTO response = priceMapper.toResponseDTO(price);
 
-        log.debug("Respuesta enviada al cliente: {}", responseDTO);
-        return ResponseEntity.ok(responseDTO);
+        log.debug("Respuesta enviada al cliente: {}", response);
+        return ResponseEntity.ok(response);
     }
 }

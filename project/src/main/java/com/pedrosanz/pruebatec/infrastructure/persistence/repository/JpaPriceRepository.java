@@ -3,6 +3,7 @@ package com.pedrosanz.pruebatec.infrastructure.persistence.repository;
 import com.pedrosanz.pruebatec.domain.model.Price;
 import com.pedrosanz.pruebatec.domain.port.out.PriceRepository;
 import com.pedrosanz.pruebatec.infrastructure.persistence.entity.PriceEntity;
+import com.pedrosanz.pruebatec.infrastructure.mapper.PriceMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,11 @@ public class JpaPriceRepository implements PriceRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
+    private final PriceMapper priceMapper;
+
+    public JpaPriceRepository(PriceMapper priceMapper) {
+        this.priceMapper = priceMapper;
+    }
 
     @Override
     public Optional<Price> findHighestPriorityPrice(LocalDateTime applicationDate, Long productId, Long brandId) {
@@ -34,19 +40,7 @@ public class JpaPriceRepository implements PriceRepository {
         query.setParameter("brandId", brandId);
 
         List<PriceEntity> priceEntities = query.setMaxResults(1).getResultList();
-        return priceEntities.stream().findFirst().map(this::toDomainModel);
+        return priceEntities.stream().findFirst().map(priceMapper::toDomain);
     }
 
-    private Price toDomainModel(PriceEntity priceEntity) {
-        return new Price(
-                priceEntity.getBrandId(),
-                priceEntity.getProductId(),
-                priceEntity.getPriceList(),
-                priceEntity.getStartDate(),
-                priceEntity.getEndDate(),
-                priceEntity.getPriority(),
-                priceEntity.getPrice(),
-                priceEntity.getCurrency()
-        );
-    }
 }

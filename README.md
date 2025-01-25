@@ -76,12 +76,6 @@ mvn spring-boot:run -DskipTests
 mvn test -Pe2e-tests
 ```
 
-**Ejecutar todos los tests a la vez:**
-```bash
-mvn test -Pall-tests
-```
-Este perfil requiere también que la aplicación esté en ejecución (ejecuta los tests e2e)
-
 ---
 
 ## Más detalles
@@ -130,3 +124,4 @@ Y el esquema de la tabla en `src/main/resources/schema.sql`
 3. **H2 Database**: Simplifica las pruebas al eliminar la necesidad de configurar una base de datos externa. (Sugerido en la tarea).
 4. **RestAssured**: Para testing e2e. Permite pruebas e2e sencillas y efectivas para validar la integración y funcionalidad de APIs REST.
 5. **Docker**: Se incluyó un Dockerfile para garantizar la portabilidad y facilitar el despliegue en cualquier entorno.
+6. **OpenApi Generator**: Se ha utilizado OpenApi para generar automáticamente código para el funcionamiento de la api.
