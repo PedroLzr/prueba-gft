@@ -3,7 +3,6 @@ package com.pedrosanz.pruebatec.application.service.impl;
 import com.pedrosanz.pruebatec.domain.port.in.PriceService;
 import com.pedrosanz.pruebatec.domain.model.Price;
 import com.pedrosanz.pruebatec.domain.port.out.PriceRepository;
-import com.pedrosanz.pruebatec.application.exception.InvalidInputException;
 import com.pedrosanz.pruebatec.application.exception.PriceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,6 @@ public class PriceServiceImpl implements PriceService {
      * @param productId       Identificador del producto
      * @param brandId         Identificador de la marca
      * @return El precio con mayor prioridad aplicable
-     * @throws InvalidInputException  Si algún parámetro es inválido
      * @throws PriceNotFoundException Si no se encuentra un precio aplicable
      */
     @Override
