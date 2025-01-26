@@ -76,6 +76,12 @@ mvn spring-boot:run -DskipTests
 mvn test -Pe2e-tests
 ```
 
+**Ejecutar todos los tests a la vez:**
+```bash
+mvn test -Pall-tests
+```
+Este perfil requiere también que la aplicación esté en ejecución (ejecuta los tests e2e)
+
 ---
 
 ## Más detalles
