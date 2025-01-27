@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pedrosanz.pruebatec.domain.port.in.PriceService;
 import com.pedrosanz.pruebatec.domain.model.Price;
 import com.pedrosanz.pruebatec.infrastructure.mapper.PriceMapper;
-import com.pedrosanz.pruebatec.infrastructure.rest.dto.PriceRequestDTO;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,16 +80,16 @@ class PriceControllerTest {
     }
 
     private void testPriceRequest(LocalDateTime applicationDate, Price mockPrice) throws Exception {
-        PriceRequestDTO requestDTO = new PriceRequestDTO();
-        requestDTO.setApplicationDate(applicationDate);
-        requestDTO.setProductId(productId);
-        requestDTO.setBrandId(brandId);
+        // Formatear la fecha en ISO_LOCAL_DATE_TIME
+        String formattedDate = applicationDate.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         Mockito.when(priceService.getApplicablePrice(applicationDate, productId, brandId)).thenReturn(mockPrice);
 
         mockMvc.perform(get("/api/v1/prices")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(requestDTO)))
+                        .param("applicationDate", formattedDate)
+                        .param("productId", String.valueOf(productId))
+                        .param("brandId", String.valueOf(brandId))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.productId", is(mockPrice.getProductId().intValue())))
                 .andExpect(jsonPath("$.brandId", is(mockPrice.getBrandId().intValue())))

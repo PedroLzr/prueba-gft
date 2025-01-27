@@ -11,20 +11,30 @@ paths:
         - Price
       summary: Obtener precio aplicable
       description: Devuelve el precio aplicable para un producto, cadena y fecha dada.
-      requestBody:
-        description: Parámetros de búsqueda para consultar precios.
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PriceRequestDTO'
-            examples:
-              validRequest:
-                summary: Ejemplo válido
-                value:
-                  applicationDate: "2020-06-14T10:00:00"
-                  productId: 35455
-                  brandId: 1
+      parameters:
+        - name: applicationDate
+          in: query
+          required: true
+          description: Fecha de aplicación en formato ISO 8601. Obligatoria.
+          schema:
+            type: string
+            format: date-time
+        - name: productId
+          in: query
+          required: true
+          description: Identificador del producto. Obligatorio y debe ser mayor a 0.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+        - name: brandId
+          in: query
+          required: true
+          description: Identificador de la cadena (marca). Obligatorio y debe ser mayor a 0.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
       responses:
         '200':
           description: Precio encontrado
@@ -61,30 +71,6 @@ paths:
 
 components:
   schemas:
-    PriceRequestDTO:
-      type: object
-      properties:
-        applicationDate:
-          type: string
-          format: date-time
-          description: Fecha de aplicación en formato ISO 8601. Obligatoria.
-        productId:
-          type: integer
-          format: int64
-          description: Identificador del producto. Obligatorio y debe ser mayor a 0.
-        brandId:
-          type: integer
-          format: int64
-          description: Identificador de la cadena (marca). Obligatorio y debe ser mayor a 0.
-      required:
-        - applicationDate
-        - productId
-        - brandId
-      example:
-        applicationDate: "2020-06-14T10:00:00"
-        productId: 35455
-        brandId: 1
-
     PriceResponseDTO:
       type: object
       properties:

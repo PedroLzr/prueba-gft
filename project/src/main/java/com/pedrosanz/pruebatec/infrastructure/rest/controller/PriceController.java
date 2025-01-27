@@ -4,12 +4,12 @@ import com.pedrosanz.pruebatec.domain.port.in.PriceService;
 import com.pedrosanz.pruebatec.domain.model.Price;
 import com.pedrosanz.pruebatec.infrastructure.mapper.PriceMapper;
 import com.pedrosanz.pruebatec.infrastructure.rest.api.PriceApi;
-import com.pedrosanz.pruebatec.infrastructure.rest.dto.PriceRequestDTO;
 import com.pedrosanz.pruebatec.infrastructure.rest.dto.PriceResponseDTO;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @Slf4j
 @RestController
@@ -24,13 +24,18 @@ public class PriceController implements PriceApi {
     }
 
     @Override
-    public ResponseEntity<PriceResponseDTO> apiV1PricesGet(@Valid @RequestBody PriceRequestDTO priceRequestDTO) {
-        log.info("Llamada a pricesGet (GET /api/v1/prices) con parámetros: {}", priceRequestDTO);
+    public ResponseEntity<PriceResponseDTO> apiV1PricesGet(
+            @RequestParam("applicationDate") LocalDateTime applicationDate,
+            @RequestParam("productId") Long productId,
+            @RequestParam("brandId") Long brandId) {
+
+        log.info("Llamada a pricesGet (GET /api/v1/prices) con parámetros: applicationDate={}, productId={}, brandId={}",
+                applicationDate, productId, brandId);
 
         Price price = priceService.getApplicablePrice(
-                priceRequestDTO.getApplicationDate(),
-                priceRequestDTO.getProductId(),
-                priceRequestDTO.getBrandId()
+                applicationDate,
+                productId,
+                brandId
         );
 
         PriceResponseDTO response = priceMapper.toResponseDTO(price);
